@@ -46,11 +46,11 @@ int main(int argc, char** argv)
     pModule = std::move(expected.get());
 
     llvm::raw_os_ostream os(std::cout);
-    for(auto i = pModule->getFunctionList().begin(), e = pModule->getFunctionList().end(); i != e; ++i)
+    for(auto& i : pModule->getFunctionList())
     {
-        if(!i->isDeclaration())
+        if(!i.isDeclaration())
         {
-            os << i->getName() << " has " << i->size() << " blocks\n";
+            os << i.getName() << " has " << i.size() << " blocks\n";
         }
     }
 
